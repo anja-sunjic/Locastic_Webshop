@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+  background-color: white;
+  &:root {
+  }
+}
+body {
+  width: 100%;
+  //overflow-x: hidden;
+  overflow: visible;
+  color: black;
+  background-color: #2c2c2c;
+}
