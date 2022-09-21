@@ -1,0 +1,38 @@
+.ws-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  .ws-img {
+    position: relative;
+    height: 180px;
+  }
+  .ws-desc {
+    padding: 20px 38px 38px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    .title {
+      font-weight: 700;
+      font-size: 27px;
+      line-height: 125%;
+      color: #0097cc;
+    }
+    .price {
+      font-weight: 700;
+      font-size: crem(29px);
+      line-height: 125%;
+      color: #1d1d1b;
+    }
+    ._button {
+      padding: 1rem 0;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: auto;
+    }
+  }
+}
