@@ -5,6 +5,9 @@
   border-radius: 8px;
   overflow: hidden;
   height: 100%;
+  &:hover {
+    box-shadow: 1px 2px 16px rgba(127, 127, 127, 0.35);
+  }
   .ws-img {
     position: relative;
     height: 180px;
@@ -14,6 +17,23 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    .when {
+      display: flex;
+      margin-bottom: 0.6rem;
+      .date,
+      .time {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: crem(15px);
+        line-height: 125%;
+        color: #1d1d1b;
+        margin-right: 1rem;
+        img {
+          margin-right: 0.3rem;
+        }
+      }
+    }
     .title {
       font-weight: 700;
       font-size: 27px;
@@ -25,6 +45,10 @@
       font-size: crem(29px);
       line-height: 125%;
       color: #1d1d1b;
+      span {
+        font-size: 15px;
+        line-height: 125%;
+      }
     }
     ._button {
       padding: 1rem 0;
@@ -33,6 +57,8 @@
       align-items: center;
       justify-content: center;
       margin-top: auto;
+      box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
+      border-radius: 6px;
     }
   }
 }

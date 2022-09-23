@@ -1,0 +1,48 @@
+.sidebar.home {
+  padding-left: 25px;
+
+  p.small {
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 125%;
+    color: #7f7f7f;
+    padding-top: 50px;
+  }
+  .filters-list {
+    .filter-single {
+      cursor: pointer;
+      .left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        img {
+        }
+      }
+
+      p {
+        text-transform: capitalize;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 125%;
+        color: #1d1d1b;
+      }
+      &.selected {
+        p {
+          color: #0097cc;
+          width: -webkit-fit-content;
+          width: -moz-fit-content;
+          width: fit-content;
+          border-bottom: 2px solid #0097cc;
+        }
+        img {
+          -webkit-filter: invert(40%) sepia(96%) saturate(2592%)
+            hue-rotate(169deg) brightness(96%) contrast(101%);
+          filter: invert(40%) sepia(96%) saturate(2592%) hue-rotate(169deg)
+            brightness(96%) contrast(101%);
+        }
+      }
+    }
+  }
+}

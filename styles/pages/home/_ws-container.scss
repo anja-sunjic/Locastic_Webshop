@@ -1,6 +1,23 @@
 .ws-body {
   flex-grow: 1;
   padding-right: 2rem;
+  h1 {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 125%;
+    color: #1d1d1b;
+    margin: 0;
+  }
+  p.small {
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 125%;
+    color: #7f7f7f;
+    .darker {
+      color: #1d1d1b;
+    }
+  }
 }
 .ws-container {
   width: 100%;

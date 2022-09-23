@@ -1,7 +1,12 @@
-const Button = (props: any) => {
+type Props = {
+  href?: string;
+  name?: string;
+};
+
+const Button = ({ href, name }: Props) => {
   return (
-    <a className="_button">
-      <span>{props.name}</span>
+    <a className="_button" href={href}>
+      <span>{name}</span>
     </a>
   );
 };

@@ -1,6 +1,7 @@
 import WsCard from "../UI/WorkshopCard";
 
 const Workshops = () => {
+  const number = 13;
   const workshops = [
     {
       id: 1,
@@ -48,12 +49,14 @@ const Workshops = () => {
   return (
     <div className="ws-body">
       <h1>Workshops</h1>
-      <p>Displayed:13</p>
+      <p className="small">
+        Displayed: <span className="darker">{number}</span>
+      </p>
       <div className="ws-container">
-        <div className="columns is-multiline">
-          {workshops.map((item) => {
+        <div className="columns is-multiline is-6 is-variable">
+          {workshops.map((item, index) => {
             return (
-              <div className="column is-4">
+              <div className="column is-4" key={index}>
                 <WsCard
                   img={item.imageUrl}
                   date={item.date}
