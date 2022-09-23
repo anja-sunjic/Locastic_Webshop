@@ -7,15 +7,19 @@ type Props = {
   date: string;
   title: string;
   price: number;
+  category: string;
 };
 
-const WsCard = ({ img, date, title, price }: Props) => {
+const WsCard = ({ img, date, title, price, category }: Props) => {
   return (
     <div className="ws-card">
       <a className="ws-img">
         <Image src={img} layout="fill" objectFit="cover" />
       </a>
       <div className="ws-desc">
+        <div className="icon">
+          <img src={`/icons/${category}.svg`} alt="" />
+        </div>
         <div className="when">
           <div className="date">
             <img src="/icons/date.svg" alt="" />

@@ -56,12 +56,16 @@ const Workshops = () => {
         <div className="columns is-multiline is-6 is-variable">
           {workshops.map((item, index) => {
             return (
-              <div className="column is-4" key={index}>
+              <div
+                className="column is-4-desktop is-6-tablet is-12-mobile"
+                key={index}
+              >
                 <WsCard
                   img={item.imageUrl}
                   date={item.date}
                   title={item.title}
                   price={item.price}
+                  category={item.category}
                 />
               </div>
             );
