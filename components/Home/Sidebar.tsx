@@ -6,11 +6,17 @@ const Sidebar = (props: any) => {
   return (
     <div className={`sidebar home`}>
       <div className="inner">
-        <p className="small">Filter by category</p>
+        <div className="columns is-gapless mb-0">
+          <div className="column is-1"></div>
+          <div className="column">
+            <p className="small">Filter by category:</p>
+          </div>
+        </div>
+
         <div className="filters-list">
           <div className="filter-single">
-            <div className="columns">
-              <div className="column is-2"></div>
+            <div className="columns is-gapless">
+              <div className="column is-1"></div>
               <div className="column">
                 <p>All</p>
               </div>
@@ -25,8 +31,8 @@ const Sidebar = (props: any) => {
                 //   setSelected((prev) => [...prev, "item"]);
                 // }}
               >
-                <div className="columns">
-                  <div className="column is-2">
+                <div className="columns is-gapless">
+                  <div className="column is-1">
                     <div className="left">
                       <img src={`/icons/${item}.svg`} alt="" />
                     </div>

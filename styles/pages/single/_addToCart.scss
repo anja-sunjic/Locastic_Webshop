@@ -1,0 +1,48 @@
+.add-to-cart {
+  box-shadow: 1px 2px 16px rgba(127, 127, 127, 0.25);
+  border-radius: 8px;
+  padding: 50px 40px;
+  flex-grow: 1;
+  p.head {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 125%;
+    color: #1d1d1b;
+    margin-bottom: 20px;
+  }
+  .price {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 125%;
+    color: #1d1d1b;
+    margin-bottom: 1.2rem;
+    span {
+      font-size: 23px;
+      line-height: 125%;
+    }
+  }
+  .action {
+    display: flex;
+    gap: 11px;
+    align-items: stretch;
+    .Dropdown-control {
+      border-radius: 8px;
+      border-color: #0097cc;
+      height: 100%;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 125%;
+      display: flex;
+      align-items: center;
+      text-align: right;
+      color: #0d0d0d;
+    }
+    ._button {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 0;
+    }
+  }
+}

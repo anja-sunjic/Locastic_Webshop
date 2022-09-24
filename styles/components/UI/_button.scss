@@ -1,9 +1,10 @@
 ._button {
   background-color: $yellow-2;
+  border-radius: 8px;
   span {
     color: $grey-dark;
     font-weight: 700;
-    font-size: crem(18px);
-    line-height: crem(22.5px);
+    font-size: 18px;
+    line-height: 22.5px;
   }
 }

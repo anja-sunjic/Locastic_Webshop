@@ -2,7 +2,7 @@
   padding-left: 25px;
 
   p.small {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     font-weight: 700;
     font-size: 15px;
     line-height: 125%;
@@ -12,11 +12,13 @@
   .filters-list {
     .filter-single {
       cursor: pointer;
+      margin-bottom: 20px;
       .left {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
+        margin-right: 0.7rem;
         img {
         }
       }

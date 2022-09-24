@@ -1,3 +1,20 @@
 .sidebar {
-  min-width: 26%;
+  min-width: 26.2%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 120px;
+  &.single {
+    padding-left: 25px;
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      span {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 125%;
+        color: #1d1d1b;
+      }
+    }
+  }
 }
