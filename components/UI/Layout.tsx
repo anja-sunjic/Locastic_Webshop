@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => (
-  <div>
+  <div style={{ overflow: "hidden", maxWidth: "100vw" }}>
     <Head>
       <title>Title</title>
       <meta charSet="utf-8" />

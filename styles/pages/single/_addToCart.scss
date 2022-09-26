@@ -37,6 +37,10 @@
       text-align: right;
       color: #0d0d0d;
     }
+    .Dropdown-arrow {
+      top: 50%;
+      transform: translateY(-50%);
+    }
     ._button {
       flex-grow: 1;
       display: flex;

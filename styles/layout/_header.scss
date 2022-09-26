@@ -1,7 +1,7 @@
 .header {
   z-index: 99;
   background-color: $yellow;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100vw;
   padding: 1.5rem 1rem;
@@ -13,6 +13,20 @@
     align-items: center;
     a {
       display: flex;
+    }
+    .cart-action {
+      left: 80%;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      p {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 125%;
+        color: #0d0d0d;
+      }
     }
   }
 }

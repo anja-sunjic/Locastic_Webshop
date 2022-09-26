@@ -1,0 +1,18 @@
+.checkout-modal {
+  .modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 82px 90px 100px;
+    p.head {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 125%;
+      color: #000000;
+    }
+    .close {
+      position: absolute;
+      top: 82px;
+      right: 90px;
+    }
+  }
+}
