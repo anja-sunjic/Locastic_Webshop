@@ -61,6 +61,10 @@ const Cart = ({ cart, setCart }: CartInterface) => {
           className="checkout-button _button"
           onClick={() => {
             setIsOpen(true);
+            setCart({
+              ...cart,
+              open: false,
+            });
           }}
         >
           <span>Checkout</span>

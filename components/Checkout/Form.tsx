@@ -1,5 +1,9 @@
 import { CartItemType, CartType } from "../../types";
-import { getCartItemTotalPrice, getTotalCartPrice, getTotalCartQuantity } from "../../helpers/cart";
+import {
+  getCartItemTotalPrice,
+  getTotalCartPrice,
+  getTotalCartQuantity,
+} from "../../helpers/cart";
 
 import { CartInterface } from "../../interfaces";
 import { postData } from "../../helpers/api";
@@ -13,7 +17,7 @@ const SUCCESS = "Success";
 const INITIAL = "Initial";
 const ERROR = "Error";
 
-const Form = ({cart, setCart}: CartInterface) => {
+const Form = ({ cart, setCart }: CartInterface) => {
   const { control, register, handleSubmit, reset } = useForm();
   const [errorMessage, setErrorMessage] = useState(null);
   const [formState, setFormState] = useState(INITIAL);
@@ -31,17 +35,17 @@ const Form = ({cart, setCart}: CartInterface) => {
           imageUrl: cartData.imageUrl,
           quantity: cartData.quantity,
           price: cartData.price,
-          totalPrice: getCartItemTotalPrice(cartData)
-        })
-      })
+          totalPrice: getCartItemTotalPrice(cartData),
+        });
+      });
 
       formattedData.push({
         products: {
-          items: orderItems
+          items: orderItems,
         },
         totalQuantity: getTotalCartQuantity(data),
-        totalPrice: getTotalCartPrice(data)
-      })
+        totalPrice: getTotalCartPrice(data),
+      });
 
       return formattedData[0];
     }
@@ -59,10 +63,11 @@ const Form = ({cart, setCart}: CartInterface) => {
         setCart({
           data: [],
           open: false,
-          quantity: 0
+          quantity: 0,
         });
         setFormState(SUCCESS);
-      }).catch(err => {
+      })
+      .catch((err) => {
         setFormState(ERROR);
         console.error(err);
       });
@@ -75,12 +80,13 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-12">
             <div className="field">
               <div className="control">
-                <span className="floating-label">First Name</span>
+                <span className="_label">First Name</span>
                 <input
                   type="text"
                   {...register("firstName", { required: true })}
                   disabled={formState === LOADING}
                   required
+                  placeholder="Type your first name here"
                 />
               </div>
             </div>
@@ -88,12 +94,13 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-12">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Last Name</span>
+                <span className="_label">Last Name</span>
                 <input
                   type="text"
                   {...register("lastName", { required: true })}
                   disabled={formState === LOADING}
                   required
+                  placeholder="Type your last name here"
                 />
               </div>
             </div>
@@ -101,12 +108,13 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-12">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Email Address</span>
+                <span className="_label">Email Address</span>
                 <input
                   type="email"
                   {...register("email", { required: true })}
                   disabled={formState === LOADING}
                   required
+                  placeholder="Type your email address here"
                 />
               </div>
             </div>
@@ -114,7 +122,7 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-6">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Date of Birth</span>
+                <span className="_label">Date of Birth</span>
                 <input type="date" />
               </div>
             </div>
@@ -122,7 +130,7 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-6">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Gender</span>
+                <span className="_label">Gender</span>
                 <input type="date" />
               </div>
             </div>
@@ -130,12 +138,13 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-12">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Address</span>
+                <span className="_label">Address</span>
                 <input
                   type="text"
                   {...register("address", { required: true })}
                   disabled={formState === LOADING}
                   required
+                  placeholder="Type your address here"
                 />
               </div>
             </div>
@@ -143,7 +152,7 @@ const Form = ({cart, setCart}: CartInterface) => {
           <div className="column is-12">
             <div className="field">
               <div className="control">
-                <span className="floating-label">Zip Code</span>
+                <span className="_label">Zip Code</span>
                 <input
                   type="text"
                   {...register("zip", { required: true })}
@@ -153,7 +162,9 @@ const Form = ({cart, setCart}: CartInterface) => {
               </div>
             </div>
           </div>
-          <input type="checkbox" /> <span>I Agree</span>
+          <div className="column">
+            <input type="checkbox" /> <span>I Agree</span>
+          </div>
         </div>
 
         <input
