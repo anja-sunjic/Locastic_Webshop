@@ -4,12 +4,13 @@
   overflow-y: scroll;
   background-color: white;
   z-index: 999;
-  width: 0;
+  width: 380px;
   top: 0;
   right: 0;
-  transition: width 250ms ease-in-out;
+  transform: translateX(380px);
+  transition: transform 250ms ease-in-out;
   &.open {
-    width: 380px;
+    transform: translateX(0);
   }
   .top {
     display: flex;
@@ -36,17 +37,34 @@
     .cart-item {
       height: 150px;
       display: flex;
-      border-radius: 8px;
-      overflow: hidden;
+
       .img {
         width: 30%;
         min-width: 30%;
         position: relative;
         height: 100%;
+        border-radius: 8px 0px 0px 8px;
+        overflow: hidden;
       }
       .right {
         flex-grow: 1;
         background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 0px 8px 8px 0px;
+        .top-line {
+          display: flex;
+          gap: 0.5rem;
+          span {
+            font-weight: 700;
+            font-size: 18.9px;
+            line-height: 125%;
+            color: #0097cc;
+            width: 85%;
+          }
+          .trash-action {
+            cursor: pointer;
+          }
+        }
       }
     }
   }
