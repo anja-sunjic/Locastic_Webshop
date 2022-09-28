@@ -1,12 +1,19 @@
 .ws-body {
   flex-grow: 1;
   padding-right: 2rem;
+  @include touch {
+    padding: 0 20px;
+  }
   h1 {
     font-weight: 700;
     font-size: 40px;
     line-height: 125%;
     color: #1d1d1b;
     margin: 0;
+    @include touch {
+      font-size: 32px;
+      line-height: 40px;
+    }
   }
   p.small {
     margin-bottom: 40px;
@@ -14,6 +21,11 @@
     font-size: 15px;
     line-height: 125%;
     color: #7f7f7f;
+    @include touch {
+      font-size: 13.5px;
+      line-height: 16.88px;
+      margin-bottom: 1rem;
+    }
     .darker {
       color: #1d1d1b;
     }

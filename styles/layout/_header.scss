@@ -6,6 +6,9 @@
   width: 100vw;
   padding: 1.5rem 1rem;
   height: 90px;
+  @include touch {
+    height: 60px;
+  }
   .inner {
     display: flex;
     flex-direction: row;
@@ -14,12 +17,21 @@
     a {
       display: flex;
     }
+    .logo {
+      @include touch {
+        height: 40px;
+      }
+    }
     .cart-action {
       left: 80%;
       position: absolute;
       display: flex;
       align-items: center;
       gap: 1rem;
+      @include touch {
+        position: relative;
+        left: unset;
+      }
       cursor: pointer;
       .cart-icon {
         position: relative;

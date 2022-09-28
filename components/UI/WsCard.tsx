@@ -1,4 +1,8 @@
-import { getCartQuantity, getCartValue, setCartValue } from "../../helpers/cart";
+import {
+  getCartQuantity,
+  getCartValue,
+  setCartValue,
+} from "../../helpers/cart";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -30,26 +34,29 @@ const WsCard = ({ workshop, cart, setCart }: WsCartInterface) => {
         <Link href={`/workshop/${workshop.id}`}>
           <a className="title">{workshop.title}</a>
         </Link>
-        <p className="price">
-          {workshop.price.toFixed(2).replace(".", ",")} <span>EUR</span>
-        </p>
-        <a
-          className="_button"
-          onClick={() => {
-            setCartValue(getCartValue("cart"), "cart", {
-              ...workshop,
-              quantity: 1,
-            });
+        <div className="bottom-mobile">
+          <p className="price">
+            {workshop.price.toFixed(2).replace(".", ",")} <span>EUR</span>
+          </p>
+          <a
+            className="_button"
+            onClick={() => {
+              setCartValue(getCartValue("cart"), "cart", {
+                ...workshop,
+                quantity: 1,
+              });
 
-            setCart({
-              ...cart,
-              data: getCartValue("cart"),
-              quantity: getCartQuantity()
-            })
-          }}
-        >
-          <span>Add to Cart</span>
-        </a>
+              setCart({
+                ...cart,
+                data: getCartValue("cart"),
+                quantity: getCartQuantity(),
+              });
+            }}
+          >
+            <span className="is-hidden-touch">Add to Cart</span>
+            <img className="is-hidden-desktop" src="/icons/cart.svg" />
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,9 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 40px;
+    @include touch {
+      height: 250px;
+    }
   }
   .ws-details {
     min-width: 60%;

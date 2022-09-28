@@ -3,6 +3,9 @@
   position: -webkit-sticky;
   position: sticky;
   top: 120px;
+  @include touch {
+    position: static;
+  }
   &.single {
     padding-left: 25px;
     .back-button {

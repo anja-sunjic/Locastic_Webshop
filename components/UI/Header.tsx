@@ -8,7 +8,7 @@ const Header = ({ cart, setCart }: CartInterface) => {
       <header className="header">
         <div className="inner">
           <Link href="/">
-            <a>
+            <a className="logo">
               <img src="/icons/logo.svg" alt="Logo" />
             </a>
           </Link>
@@ -26,9 +26,11 @@ const Header = ({ cart, setCart }: CartInterface) => {
               {!cart.quantity ? "" : <div className="blue-dot"></div>}
             </div>
             {!cart.quantity ? (
-              <p>Cart is empty</p>
+              <p className="is-hidden-mobile">Cart is empty</p>
             ) : (
-              <p>{cart.quantity} Workshops in Cart</p>
+              <p className="is-hidden-mobile">
+                {cart.quantity} Workshops in Cart
+              </p>
             )}
           </div>
         </div>

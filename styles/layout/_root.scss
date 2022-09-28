@@ -4,4 +4,9 @@
   margin-top: 90px;
   padding-top: 60px;
   align-items: flex-start;
+  @include touch {
+    flex-direction: column;
+    margin-top: 60px;
+    padding-top: 0;
+  }
 }
