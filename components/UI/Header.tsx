@@ -12,11 +12,19 @@ const Header = ({ cart, setCart }: CartInterface) => {
               <img src="/icons/logo.svg" alt="Logo" />
             </a>
           </Link>
-          <div className="cart-action" onClick={() => setCart({
-            ...cart,
-            open: true,
-          })}>
-            <img src="/icons/cart.svg" alt="" />
+          <div
+            className="cart-action"
+            onClick={() =>
+              setCart({
+                ...cart,
+                open: true,
+              })
+            }
+          >
+            <div className="cart-icon">
+              <img src="/icons/cart.svg" alt="" />
+              {!cart.quantity ? "" : <div className="blue-dot"></div>}
+            </div>
             {!cart.quantity ? (
               <p>Cart is empty</p>
             ) : (

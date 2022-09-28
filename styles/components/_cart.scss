@@ -51,21 +51,94 @@
         background-color: #f2f2f2;
         padding: 20px;
         border-radius: 0px 8px 8px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .top-line {
           display: flex;
           gap: 0.5rem;
+          align-items: flex-start;
           span {
             font-weight: 700;
             font-size: 18.9px;
             line-height: 125%;
             color: #0097cc;
-            width: 85%;
+            width: 82%;
           }
           .trash-action {
             cursor: pointer;
+            display: flex;
+          }
+        }
+        .action {
+          gap: 11px;
+          display: flex;
+          align-items: center;
+          .Dropdown-control {
+            border-radius: 8px;
+            border-color: #0097cc;
+            height: 100%;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 125%;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            color: #0d0d0d;
+          }
+          .Dropdown-arrow {
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .price {
+            font-weight: 700;
+            font-size: 20.3px;
+            line-height: 125%;
+            color: #1d1d1b;
+            span {
+              font-size: 13.5px;
+              line-height: 125%;
+            }
           }
         }
       }
+    }
+  }
+  .cart-total {
+    padding: 40px;
+    p.sub {
+      font-weight: 700;
+      font-size: 13.5px;
+      line-height: 125%;
+      color: #7f7f7f;
+    }
+    p.price {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 125%;
+      color: #1d1d1b;
+      span {
+        font-size: 27px;
+        line-height: 125%;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .checkout-button {
+    background: #0097cc;
+    box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
+    border-radius: 6px;
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    cursor: pointer;
+    span {
+      font-weight: 700;
+      font-size: 18.4px;
+      line-height: 125%;
+      color: #ffffff;
     }
   }
 }

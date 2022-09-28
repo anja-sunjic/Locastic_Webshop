@@ -21,6 +21,19 @@
       align-items: center;
       gap: 1rem;
       cursor: pointer;
+      .cart-icon {
+        position: relative;
+        .blue-dot {
+          position: absolute;
+          height: 13px;
+          width: 13px;
+          background-color: #00aae4;
+          border-radius: 50%;
+          display: inline-block;
+          top: -1px;
+          right: -1px;
+        }
+      }
       p {
         font-weight: 700;
         font-size: 15px;

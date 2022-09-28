@@ -46,7 +46,9 @@ const CartItem = ({ cart, item, setCart }: Props) => {
             placeholder="Select an option"
           />
 
-          <div className="price">{item.price}</div>
+          <p className="price">
+            {item.price.toFixed(2).replace(".", ",")} <span>EUR</span>
+          </p>
         </div>
       </div>
     </div>

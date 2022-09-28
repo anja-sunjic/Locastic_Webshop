@@ -1,8 +1,5 @@
 import { CartItemType, CartType } from "../../types";
-import {
-  getCartQuantity,
-  getTotalCartPrice,
-} from "../../helpers/cart";
+import { getCartQuantity, getTotalCartPrice } from "../../helpers/cart";
 import { useEffect, useState } from "react";
 
 import { CartInterface } from "../../interfaces";
@@ -16,7 +13,7 @@ const Cart = ({ cart, setCart }: CartInterface) => {
     setCart({
       ...cart,
       quantity: getCartQuantity(),
-    })
+    });
   }, []);
 
   return (
@@ -29,10 +26,15 @@ const Cart = ({ cart, setCart }: CartInterface) => {
           ) : (
             <p>{cart.quantity} Workshops</p>
           )}
-          <div className="close" onClick={() => setCart({
-            ...cart,
-            open: false,
-          })}>
+          <div
+            className="close"
+            onClick={() =>
+              setCart({
+                ...cart,
+                open: false,
+              })
+            }
+          >
             <img src="/icons/close.svg" alt="" />
           </div>
         </div>
@@ -49,7 +51,11 @@ const Cart = ({ cart, setCart }: CartInterface) => {
           })}
         </div>
         <div className="cart-total">
-          <p>Total: {getTotalCartPrice(cart.data)}</p>
+          <p className="sub">SUBTOTAL</p>
+          <p className="price">
+            {getTotalCartPrice(cart.data).toFixed(2).replace(".", ",")}
+            <span>EUR</span>
+          </p>
         </div>
         <div
           className="checkout-button _button"
@@ -60,7 +66,12 @@ const Cart = ({ cart, setCart }: CartInterface) => {
           <span>Checkout</span>
         </div>
       </div>
-      <Checkout cart={cart} setCart={setCart} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Checkout
+        cart={cart}
+        setCart={setCart}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </>
   );
 };
