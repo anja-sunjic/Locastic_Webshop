@@ -1,8 +1,11 @@
-import dayjs from "dayjs";
-import Image from "next/image";
 import AddToCart from "./AddToCart";
+import Image from "next/image";
+import { SingleWsInterface } from "../../interfaces";
+import dayjs from "dayjs";
+import { getUser } from "../../helpers/user";
 
-const Details = ({ workshop }: any) => {
+const Details = ({ data, cart, setCart }: SingleWsInterface) => {
+  const workshop = data.content[0];
   return (
     <div className="ws-body details">
       <div className="top-img">
@@ -25,11 +28,11 @@ const Details = ({ workshop }: any) => {
           </div>
           <h1>{workshop.title}</h1>
           <p className="author">
-            WITH <span className="bold">Marko Maljković </span>
+            WITH <span className="bold">{getUser(data.users, workshop.userId)?.name}</span>
           </p>
           <p className="desc">{workshop.desc}</p>
         </div>
-        <AddToCart workshop={workshop} />
+        <AddToCart workshop={workshop} cart={cart} setCart={setCart} />
       </div>
     </div>
   );

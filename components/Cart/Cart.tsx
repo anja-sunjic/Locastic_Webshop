@@ -1,65 +1,66 @@
-import { useEffect, useState } from "react";
+import { CartItemType, CartType } from "../../types";
 import {
   getCartQuantity,
-  getCartValue,
   getTotalCartPrice,
 } from "../../helpers/cart";
-import { CartItemType } from "../../types";
-import Checkout from "../Checkout/Checkout";
+import { useEffect, useState } from "react";
+
+import { CartInterface } from "../../interfaces";
 import CartItem from "./CartItem";
+import Checkout from "../Checkout/Checkout";
 
-const Cart = ({ isOpen, close }: any) => {
-  const [data, setData] = useState([]);
-  const [cartQuantity, setCartQuantity] = useState();
-
-  const [checkout, setCheckout] = useState(false);
-  const CloseCheckout = () => setCheckout(false);
+const Cart = ({ cart, setCart }: CartInterface) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setCartQuantity(getCartQuantity());
-    setData(getCartValue("cart"));
+    setCart({
+      ...cart,
+      quantity: getCartQuantity(),
+    })
   }, []);
 
   return (
     <>
-      <div className={`cart ${isOpen ? "open" : ""}`}>
+      <div className={`cart ${cart.open ? "open" : ""}`}>
         <div className="top">
           <img src="/icons/cart.svg" alt="" />
-          {!cartQuantity ? (
+          {!cart.quantity ? (
             <p>Cart is empty</p>
           ) : (
-            <p>{cartQuantity} Workshops</p>
+            <p>{cart.quantity} Workshops</p>
           )}
-          <div className="close" onClick={() => close()}>
+          <div className="close" onClick={() => setCart({
+            ...cart,
+            open: false,
+          })}>
             <img src="/icons/close.svg" alt="" />
           </div>
         </div>
         <div className="cart-content">
-          {data.map((cart: CartItemType) => {
+          {cart.data.map((cartItem: CartItemType, index: number) => {
             return (
               <CartItem
                 cart={cart}
-                setData={setData}
-                setCartQuantity={setCartQuantity}
-                key={`workshop_${cart.id}`}
+                item={cartItem}
+                setCart={setCart}
+                key={`workshop_${index}`}
               />
             );
           })}
         </div>
         <div className="cart-total">
-          <p>Total: {getTotalCartPrice(data)}</p>
+          <p>Total: {getTotalCartPrice(cart.data)}</p>
         </div>
         <div
           className="checkout-button _button"
           onClick={() => {
-            setCheckout(true);
-            close();
+            setIsOpen(true);
           }}
         >
           <span>Checkout</span>
         </div>
       </div>
-      <Checkout isOpen={checkout} close={CloseCheckout} />
+      <Checkout cart={cart} setCart={setCart} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

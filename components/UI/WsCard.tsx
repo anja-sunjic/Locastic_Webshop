@@ -1,9 +1,11 @@
-import dayjs from "dayjs";
+import { getCartQuantity, getCartValue, setCartValue } from "../../helpers/cart";
+
 import Image from "next/image";
 import Link from "next/link";
-import { getCartValue, setCartValue } from "../../helpers/cart";
+import { WsCartInterface } from "../../interfaces";
+import dayjs from "dayjs";
 
-const WsCard = ({ workshop }: any) => {
+const WsCard = ({ workshop, cart, setCart }: WsCartInterface) => {
   return (
     <div className="ws-card">
       <Link href={`/workshop/${workshop.id}`}>
@@ -38,6 +40,12 @@ const WsCard = ({ workshop }: any) => {
               ...workshop,
               quantity: 1,
             });
+
+            setCart({
+              ...cart,
+              data: getCartValue("cart"),
+              quantity: getCartQuantity()
+            })
           }}
         >
           <span>Add to Cart</span>

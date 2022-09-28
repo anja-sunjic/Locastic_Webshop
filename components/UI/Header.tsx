@@ -1,16 +1,8 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { getCartQuantity } from "../../helpers/cart";
 import Cart from "../Cart/Cart";
+import { CartInterface } from "../../interfaces";
+import Link from "next/link";
 
-const Header = () => {
-  const [cart, setCart] = useState(false);
-  const CloseCart = () => setCart(false);
-  const [cartQuantity, setCartQuantity] = useState();
-
-  useEffect(() => {
-    setCartQuantity(getCartQuantity());
-  }, []);
+const Header = ({ cart, setCart }: CartInterface) => {
   return (
     <>
       <header className="header">
@@ -20,17 +12,20 @@ const Header = () => {
               <img src="/icons/logo.svg" alt="Logo" />
             </a>
           </Link>
-          <div className="cart-action" onClick={() => setCart(true)}>
+          <div className="cart-action" onClick={() => setCart({
+            ...cart,
+            open: true,
+          })}>
             <img src="/icons/cart.svg" alt="" />
-            {!cartQuantity ? (
+            {!cart.quantity ? (
               <p>Cart is empty</p>
             ) : (
-              <p>{cartQuantity} Workshops in Cart</p>
+              <p>{cart.quantity} Workshops in Cart</p>
             )}
           </div>
         </div>
       </header>
-      <Cart isOpen={cart} close={CloseCart} />
+      <Cart cart={cart} setCart={setCart} />
     </>
   );
 };

@@ -8,3 +8,9 @@ export type CartItemType = {
     date: string,
     quantity: number,
 }
+
+export type CartType = {
+    data: Array<CartItemType>,
+    open: boolean,
+    quantity: number,
+}

@@ -50,3 +50,13 @@ export function getTotalCartPrice(cart: Array<CartItemType>): number {
   const sum = totalPrices.reduce((prev, curr) => prev + curr, 0);
   return sum;
 }
+
+export function getTotalCartQuantity(cart: Array<CartItemType>): number {
+  const totalQuantity: Array<number> = [];
+  cart.map(c => {
+    return totalQuantity.push(c.quantity);
+  });
+
+  const sum = totalQuantity.reduce((prev, curr) => prev + curr, 0);
+  return sum;
+}

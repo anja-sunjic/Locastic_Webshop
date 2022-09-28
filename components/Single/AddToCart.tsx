@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { useState } from "react";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import { getCartValue, setCartValue } from "../../helpers/cart";
+
+import { getCartQuantity, getCartValue, setCartValue } from "../../helpers/cart";
+
+import Dropdown from "react-dropdown";
+import { WsCartInterface } from "../../interfaces";
 
 //fake data for dropdown - 1-10 quantity
 const options = Array.from(Array(10).keys()).map((x) => (++x).toString());
-const AddToCart = ({ workshop }: any) => {
-  console.log(workshop);
+const AddToCart = ({ workshop, cart, setCart }: WsCartInterface) => {
   return (
     <div className="add-to-cart">
       <p className="head">Buy Your Ticket</p>
@@ -28,6 +28,12 @@ const AddToCart = ({ workshop }: any) => {
             setCartValue(getCartValue("cart"), "cart", {
               ...workshop,
               quantity: 1,
+            });
+
+            setCart({
+              ...cart,
+              data: getCartValue("cart"),
+              quantity: getCartQuantity()
             });
           }}
         >

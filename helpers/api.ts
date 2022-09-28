@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function fetchData(type: string = 'workshops', id: string|null = null): Promise<any> {
+async function fetchData(type: string = 'workshops', id: any = null): Promise<any> {
     if (type === 'single') {
         const res = await axios.get(
             `${process.env.NEXT_PUBLIC_API_ENDPOINT}/workshops/${id}`
@@ -31,6 +31,14 @@ async function fetchData(type: string = 'workshops', id: string|null = null): Pr
 
     const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/workshops`
+    );
+    return res.data;
+}
+
+export async function postData(data: any): Promise<any> {
+    const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/orders`,
+        data
     );
     return res.data;
 }

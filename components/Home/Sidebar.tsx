@@ -1,8 +1,34 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-const Sidebar = (props: any) => {
-  const [selected, setSelected] = useState([]);
-  const categories = ["marketing", "backend", "frontend", "design"];
+import { CartItemType } from "../../types";
+import { WorkshopDataSidebar } from "../../interfaces";
+import fetchData from "../../helpers/api";
+
+const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
+  const [selected, setSelected] = useState<string>('all');
+  const [categories, setCategories] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    const categories = fetchData('categories');
+    categories.then((cats: Array<string>) => {
+      setCategories(cats)
+    }).catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    const newData = fetchData('workshops');
+    newData.then((d: Array<CartItemType>) => {setData({
+      ...data,
+      content: selected !== 'all' ? d.filter((item: any) => item.category === selected) : d
+    })})
+    .catch(console.warn)
+  }, [ selected ]);
+
+  function getSelectedClass(category: string): string {
+    if (category === selected) return 'selected';
+    return '';
+  }
+
   return (
     <div className={`sidebar home`}>
       <div className="inner">
@@ -14,7 +40,11 @@ const Sidebar = (props: any) => {
         </div>
 
         <div className="filters-list">
-          <div className="filter-single">
+          <div
+            className={"filter-single " + getSelectedClass('all')}
+            onClick={async () => {
+              setSelected('all');
+            }}>
             <div className="columns is-gapless">
               <div className="column is-1"></div>
               <div className="column">
@@ -25,11 +55,11 @@ const Sidebar = (props: any) => {
           {categories.map((item, index) => {
             return (
               <div
-                className="filter-single selected"
-                key={index}
-                // onClick={() => {
-                //   setSelected((prev) => [...prev, "item"]);
-                // }}
+                className={"filter-single " + getSelectedClass(item)}
+                key={"category_" + index}
+                onClick={async () => {
+                  setSelected(item);
+                }}
               >
                 <div className="columns is-gapless">
                   <div className="column is-1">

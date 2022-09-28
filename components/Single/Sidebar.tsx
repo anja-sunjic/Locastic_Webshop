@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
 
-const Sidebar = (props: any) => {
+const Sidebar = () => {
   return (
     <div className={`sidebar single`}>
       <Link href="/">

@@ -1,12 +1,13 @@
+import { CheckoutInterface } from "../../interfaces";
 import Form from "./Form";
 
-const Checkout = ({ isOpen, close }: any) => {
+const Checkout = ({ cart, setCart, isOpen, setIsOpen }: CheckoutInterface) => {
   return (
     <div className={`checkout-modal modal ${isOpen ? "is-active" : ""}`}>
-      <div className="modal-background"></div>
+      <div className="modal-background" onClick={() => setIsOpen(false)} ></div>
       <div className="modal-content">
         <div className="inner">
-          <div className="close" onClick={() => close()}>
+          <div className="close" onClick={() => setIsOpen(false)}>
             <img src="/icons/close.svg" alt="" />
           </div>
           <p className="head">Checkout</p>
@@ -14,7 +15,7 @@ const Checkout = ({ isOpen, close }: any) => {
             What is Lorem Ipsum Lorem Ipsum is simply dummy text of the
             printing.
           </p>
-          <Form />
+          <Form cart={cart} setCart={setCart} />
         </div>
       </div>
     </div>
