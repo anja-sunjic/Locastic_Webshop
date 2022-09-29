@@ -1,5 +1,9 @@
 .details {
   margin-bottom: 80px;
+  width: 100%;
+  @include touch {
+    padding: 0 20px;
+  }
   .top-img {
     height: 380px;
     position: relative;
@@ -14,12 +18,19 @@
     min-width: 60%;
     width: 60%;
     padding-right: 40px;
+    @include touch {
+      width: 100%;
+    }
     h1 {
       font-weight: 700;
       font-size: 60px;
       line-height: 120%;
       color: #0097cc;
       margin-bottom: 20px;
+      @include touch {
+        font-size: 36px;
+        line-height: 43px;
+      }
     }
     .top {
       display: flex;

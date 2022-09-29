@@ -8,6 +8,9 @@
   }
   &.single {
     padding-left: 25px;
+    @include touch {
+      padding: 25px;
+    }
     .back-button {
       display: flex;
       align-items: center;

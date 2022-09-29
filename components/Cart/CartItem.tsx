@@ -1,21 +1,27 @@
+import "react-dropdown/style.css";
+
 import {
   getCartQuantity,
   getCartValue,
+  getProperQuantityAndPrice,
   removeCartItem,
+  setCartQuantity,
 } from "../../helpers/cart";
 
 import { CartItemType } from "../../types";
-import Image from "next/image";
 import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+import Image from "next/image";
+
 type Props = {
   cart: any;
   item: CartItemType;
   setCart: any;
 };
-//fake data for dropdown - 1-10 quantity
-const options = Array.from(Array(10).keys()).map((x) => (++x).toString());
+
 const CartItem = ({ cart, item, setCart }: Props) => {
+  const single = getProperQuantityAndPrice(cart, item);
+  const options = Array.from(Array(single.quantity > 10 ? single.quantity : 10).keys()).map((x) => (++x).toString());
+
   return (
     <div className="cart-item">
       <div className="img">
@@ -41,13 +47,21 @@ const CartItem = ({ cart, item, setCart }: Props) => {
         <div className="action">
           <Dropdown
             options={options}
-            onChange={() => {}}
-            value={options[0]}
+            onChange={(e) => {
+              const qty = parseInt(e.value);
+              setCartQuantity(cart.data, item, qty);
+              setCart({
+                ...cart,
+                data: getCartValue("cart"),
+                quantity: getCartQuantity(),
+              });
+            }}
+            value={single.quantity.toString()}
             placeholder="Select an option"
           />
 
           <p className="price">
-            {item.price.toFixed(2).replace(".", ",")} <span>EUR</span>
+            {single.totalPrice.toFixed(2).replace(".", ",")} <span>EUR</span>
           </p>
         </div>
       </div>

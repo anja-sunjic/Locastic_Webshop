@@ -1,4 +1,4 @@
-import { CartItemType } from "../types";
+import { CartItemType, ContentType } from "../types";
 
 export function setCartValue(current: Array<CartItemType> = [], key: string, value: CartItemType): void {
     const checkCurrent = current?.filter(c => c.id === value.id);
@@ -59,4 +59,26 @@ export function getTotalCartQuantity(cart: Array<CartItemType>): number {
 
   const sum = totalQuantity.reduce((prev, curr) => prev + curr, 0);
   return sum;
+}
+
+export function getProperQuantityAndPrice(cart: any, workshop: any) {
+  const currentWorkshop = cart?.data.find((c: CartItemType) => c.id ===workshop.id);
+  return currentWorkshop ? {
+    quantity: currentWorkshop.quantity,
+    totalPrice: getCartItemTotalPrice(currentWorkshop)
+  } : { quantity: 0, totalPrice: 0 };
+}
+
+export function setCartQuantity(
+  cart: Array<CartItemType> = [],
+  item: CartItemType|ContentType,
+  qty: number
+): void {
+  const checkCurrent = cart?.filter(c => c.id === item.id);
+
+  if (checkCurrent.length) {
+    const cartIndex = cart.findIndex(c => c.id === item.id);
+    cart[cartIndex] = { ...item, quantity: qty };
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 }

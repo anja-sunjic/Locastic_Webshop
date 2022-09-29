@@ -3,6 +3,15 @@
   border-radius: 8px;
   padding: 50px 40px;
   flex-grow: 1;
+  @include touch {
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    background-color: white;
+    width: 100vw;
+    left: 0;
+    padding: 20px;
+  }
   p.head {
     font-weight: 700;
     font-size: 23px;
