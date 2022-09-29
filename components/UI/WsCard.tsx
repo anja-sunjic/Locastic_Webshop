@@ -47,7 +47,7 @@ const WsCard = ({ workshop, cart, setCart }: WsCartInterface) => {
               });
 
               setCart({
-                ...cart,
+                open: true,
                 data: getCartValue("cart"),
                 quantity: getCartQuantity(),
               });

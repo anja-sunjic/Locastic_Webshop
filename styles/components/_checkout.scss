@@ -43,11 +43,14 @@
           border: none;
           border-bottom: 2px solid #7f7f7f;
           padding: 14px 0;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 150%;
+          color: #1d1d1b;
           &::-webkit-input-placeholder {
             font-weight: 500;
             font-size: 18px;
             line-height: 150%;
-
             color: #7f7f7f;
           }
           &::-moz-placeholder {
@@ -79,6 +82,9 @@
             color: #7f7f7f;
           }
         }
+        input:not([value=""]):not(:focus):valid {
+          background: #f2f2f2;
+        }
       }
       input.submit-btn {
         -webkit-appearance: none;
@@ -93,6 +99,21 @@
         text-align: center;
         color: #1d1d1b;
         padding: 1rem 3rem;
+      }
+      .Dropdown-control {
+        border: none;
+        border-bottom: 2px solid #7f7f7f;
+        padding: 15px 0;
+      }
+      .Dropdown-placeholder {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 150%;
+        color: #1d1d1b;
+      }
+      .Dropdown-arrow {
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
   }

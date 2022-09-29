@@ -31,25 +31,28 @@ const Home: NextPage = () => {
     setCart({
       open: false,
       data: getCartValue("cart"),
-      quantity: getCartQuantity()
+      quantity: getCartQuantity(),
     });
 
     axios
       .all([workshopData, userData])
       .then(
-        axios.spread(
-          (...responses: Array<any>) => {
-            const workshops: Array<ContentType> = responses[0];
-            const users: Array<UserType> = responses[1];
+        axios.spread((...responses: Array<any>) => {
+          const workshops: Array<ContentType> = responses[0];
+          const users: Array<UserType> = responses[1];
+          console.log(workshops);
 
-            setData({
-              content: workshops,
-              loading: false,
-              message: !workshops.length ? "No data available" : "",
-              users: users,
-            });
-          }
-        )
+          workshops.sort(function (a: ContentType, b: ContentType) {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          });
+
+          setData({
+            content: workshops,
+            loading: false,
+            message: !workshops.length ? "No data available" : "",
+            users: users,
+          });
+        })
       )
       .catch((errors) => {
         console.log(errors);

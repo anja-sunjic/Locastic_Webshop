@@ -9,6 +9,7 @@ import { CartInterface } from "../../interfaces";
 import { postData } from "../../helpers/api";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import ReactDropdown from "react-dropdown";
 
 const DatePicker = require("react-datepicker");
 
@@ -16,7 +17,11 @@ const LOADING = "Loading";
 const SUCCESS = "Success";
 const INITIAL = "Initial";
 const ERROR = "Error";
-
+const genders = [
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
+  { value: "other", label: "Other" },
+];
 const Form = ({ cart, setCart }: CartInterface) => {
   const { control, register, handleSubmit, reset } = useForm();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -131,7 +136,7 @@ const Form = ({ cart, setCart }: CartInterface) => {
             <div className="field">
               <div className="control">
                 <span className="_label">Gender</span>
-                <input type="date" />
+                <ReactDropdown options={genders} />
               </div>
             </div>
           </div>

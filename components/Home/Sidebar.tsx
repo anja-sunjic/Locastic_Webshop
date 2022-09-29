@@ -42,7 +42,7 @@ const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
   return (
     <div className={`sidebar home`}>
       <div className="inner">
-        <div className="columns is-gapless mb-0">
+        <div className="columns is-gapless mb-0 is-hidden-touch">
           <div className="column is-1"></div>
           <div className="column">
             <p className="small">Filter by category:</p>
@@ -91,7 +91,7 @@ const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
           onChange={(e) => {}}
           value={categories[0]}
           placeholder="Select an option"
-          className="filters-dropdown"
+          className="filters-dropdown is-hidden-desktop"
         />
       </div>
     </div>

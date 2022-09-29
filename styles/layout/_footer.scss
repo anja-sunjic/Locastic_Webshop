@@ -1,6 +1,9 @@
 .footer {
   background-color: rgba(127, 127, 127, 0.1);
   padding: 30px 80px;
+  @include touch {
+    padding: 12px 40px;
+  }
   span {
     font-weight: 600;
     font-size: 15px;

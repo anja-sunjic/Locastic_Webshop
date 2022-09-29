@@ -11,6 +11,10 @@
     width: 100vw;
     left: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   p.head {
     font-weight: 700;
@@ -29,6 +33,12 @@
       font-size: 23px;
       line-height: 125%;
     }
+    @include touch {
+      font-size: 20.3px;
+      span {
+        font-size: 13.5px;
+      }
+    }
   }
   .action {
     display: flex;
@@ -45,6 +55,14 @@
       align-items: center;
       text-align: right;
       color: #0d0d0d;
+      @include touch {
+        font-size: 18.4;
+      }
+    }
+    .Dropdown-menu {
+      @include touch {
+        top: 0;
+      }
     }
     .Dropdown-arrow {
       top: 50%;
