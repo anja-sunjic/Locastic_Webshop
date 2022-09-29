@@ -20,6 +20,7 @@
     padding-right: 40px;
     @include touch {
       width: 100%;
+      padding-right: 0;
     }
     h1 {
       font-weight: 700;
@@ -62,6 +63,9 @@
         img {
           margin-right: 0.3rem;
         }
+        @include touch {
+          font-size: 14.5px;
+        }
       }
     }
     p.author {
@@ -70,11 +74,17 @@
       line-height: 125%;
       color: #0d0d0d;
       margin-bottom: 40px;
+      @include touch {
+        font-size: 14.5px;
+      }
       span.bold {
         font-weight: 700;
         font-size: 27px;
         line-height: 125%;
         color: #1d1d1b;
+        @include touch {
+          font-size: 18.5px;
+        }
       }
     }
     p.desc {
@@ -83,6 +93,9 @@
       line-height: 150%;
 
       color: #1d1d1b;
+      @include touch {
+        font-size: 14.4px;
+      }
     }
   }
   .bottom {

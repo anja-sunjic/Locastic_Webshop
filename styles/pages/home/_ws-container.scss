@@ -1,6 +1,7 @@
 .ws-body {
   flex-grow: 1;
   padding-right: 2rem;
+  margin-bottom: 120px;
   @include touch {
     padding: 0 20px;
   }

@@ -3,30 +3,40 @@ import { useEffect, useMemo, useState } from "react";
 import { CartItemType } from "../../types";
 import { WorkshopDataSidebar } from "../../interfaces";
 import fetchData from "../../helpers/api";
+import "react-dropdown/style.css";
+import Dropdown from "react-dropdown";
 
 const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
-  const [selected, setSelected] = useState<string>('all');
+  const [selected, setSelected] = useState<string>("all");
   const [categories, setCategories] = useState<Array<string>>([]);
 
   useEffect(() => {
-    const categories = fetchData('categories');
-    categories.then((cats: Array<string>) => {
-      setCategories(cats)
-    }).catch(err => console.error(err));
+    const categories = fetchData("categories");
+    categories
+      .then((cats: Array<string>) => {
+        setCategories(cats);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
-    const newData = fetchData('workshops');
-    newData.then((d: Array<CartItemType>) => {setData({
-      ...data,
-      content: selected !== 'all' ? d.filter((item: any) => item.category === selected) : d
-    })})
-    .catch(console.warn)
-  }, [ selected ]);
+    const newData = fetchData("workshops");
+    newData
+      .then((d: Array<CartItemType>) => {
+        setData({
+          ...data,
+          content:
+            selected !== "all"
+              ? d.filter((item: any) => item.category === selected)
+              : d,
+        });
+      })
+      .catch(console.warn);
+  }, [selected]);
 
   function getSelectedClass(category: string): string {
-    if (category === selected) return 'selected';
-    return '';
+    if (category === selected) return "selected";
+    return "";
   }
 
   return (
@@ -39,12 +49,13 @@ const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
           </div>
         </div>
 
-        <div className="filters-list">
+        <div className="filters-list is-hidden-touch">
           <div
-            className={"filter-single " + getSelectedClass('all')}
+            className={"filter-single " + getSelectedClass("all")}
             onClick={async () => {
-              setSelected('all');
-            }}>
+              setSelected("all");
+            }}
+          >
             <div className="columns is-gapless">
               <div className="column is-1"></div>
               <div className="column">
@@ -75,6 +86,13 @@ const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
             );
           })}
         </div>
+        <Dropdown
+          options={categories}
+          onChange={(e) => {}}
+          value={categories[0]}
+          placeholder="Select an option"
+          className="filters-dropdown"
+        />
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import Sidebar from "../../components/Single/Sidebar";
 import axios from "axios";
 import fetchData from "../../helpers/api";
 import { useRouter } from "next/router";
+import Recommender from "../../components/Single/Recommender";
 
 const Workshop: NextPage = () => {
   const router = useRouter();
@@ -34,10 +35,9 @@ const Workshop: NextPage = () => {
       const userData = fetchData("users");
 
       axios
-      .all([workshopData, userData])
-      .then(
-        axios.spread(
-          (...responses: Array<any>) => {
+        .all([workshopData, userData])
+        .then(
+          axios.spread((...responses: Array<any>) => {
             const workshop: Array<ContentType> = responses[0];
             const users: Array<UserType> = responses[1];
 
@@ -47,17 +47,16 @@ const Workshop: NextPage = () => {
               message: !workshop.length ? "No data available" : "",
               users: users,
             });
-          }
+          })
         )
-      )
-      .catch((errors) => {
-        console.log(errors);
-      });
+        .catch((errors) => {
+          console.log(errors);
+        });
 
       setCart({
         open: false,
         data: getCartValue("cart"),
-        quantity: getCartQuantity()
+        quantity: getCartQuantity(),
       });
     }
   }, [id]);

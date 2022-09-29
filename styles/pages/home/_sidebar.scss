@@ -47,4 +47,29 @@
       }
     }
   }
+  .filters-dropdown {
+    .Dropdown-control {
+      border: none;
+    }
+    .Dropdown-placeholder,
+    .Dropdown-option {
+      font-weight: 700;
+      font-size: 18.4px;
+      line-height: 125%;
+      color: #0097cc;
+      text-transform: capitalize;
+      margin-left: 1rem;
+    }
+    .Dropdown-arrow {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border-color: #0097cc transparent transparent;
+    }
+    &.is-open {
+      .Dropdown-arrow {
+        border-color: transparent transparent #0097cc;
+      }
+    }
+  }
 }

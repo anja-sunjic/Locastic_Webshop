@@ -3,7 +3,6 @@ import Image from "next/image";
 import { SingleWsInterface } from "../../interfaces";
 import dayjs from "dayjs";
 import { getUser } from "../../helpers/user";
-
 const Details = ({ data, cart, setCart }: SingleWsInterface) => {
   const workshop = data.content[0];
   return (
@@ -28,7 +27,10 @@ const Details = ({ data, cart, setCart }: SingleWsInterface) => {
           </div>
           <h1>{workshop.title}</h1>
           <p className="author">
-            WITH <span className="bold">{getUser(data.users, workshop.userId)?.name}</span>
+            WITH{" "}
+            <span className="bold">
+              {getUser(data.users, workshop.userId)?.name}
+            </span>
           </p>
           <p className="desc">{workshop.desc}</p>
         </div>

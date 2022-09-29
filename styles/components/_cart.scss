@@ -9,6 +9,11 @@
   right: 0;
   transform: translateX(380px);
   transition: transform 250ms ease-in-out;
+  padding-bottom: 90px;
+  @include touch {
+    width: 100vw;
+    transform: translateX(100vw);
+  }
   &.open {
     transform: translateX(0);
   }
