@@ -10,7 +10,7 @@ type Props = {
 const Layout = ({ children }: Props) => (
   <div style={{ overflow: "hidden", maxWidth: "100vw" }}>
     <Head>
-      <title>Title</title>
+      <title>Tinel Workshop</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>

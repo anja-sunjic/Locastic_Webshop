@@ -1,10 +1,11 @@
+import "react-dropdown/style.css";
+
 import { useEffect, useMemo, useState } from "react";
 
 import { CartItemType } from "../../types";
+import Dropdown from "react-dropdown";
 import { WorkshopDataSidebar } from "../../interfaces";
 import fetchData from "../../helpers/api";
-import "react-dropdown/style.css";
-import Dropdown from "react-dropdown";
 
 const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
   const [selected, setSelected] = useState<string>("all");
@@ -88,8 +89,8 @@ const Sidebar = ({ data, setData }: WorkshopDataSidebar) => {
         </div>
         <Dropdown
           options={categories}
-          onChange={(e) => {}}
-          value={categories[0]}
+          onChange={(e) => setSelected(e.value)}
+          value={selected}
           placeholder="Select an option"
           className="filters-dropdown is-hidden-desktop"
         />

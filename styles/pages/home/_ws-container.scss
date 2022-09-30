@@ -4,6 +4,7 @@
   margin-bottom: 120px;
   @include touch {
     padding: 0 20px;
+    min-height: 80vh;
   }
   h1 {
     font-weight: 700;

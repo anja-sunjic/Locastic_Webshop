@@ -40,7 +40,6 @@ const Home: NextPage = () => {
         axios.spread((...responses: Array<any>) => {
           const workshops: Array<ContentType> = responses[0];
           const users: Array<UserType> = responses[1];
-          console.log(workshops);
 
           workshops.sort(function (a: ContentType, b: ContentType) {
             return new Date(b.date).getTime() - new Date(a.date).getTime();

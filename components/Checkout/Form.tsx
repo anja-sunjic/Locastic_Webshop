@@ -1,4 +1,3 @@
-import { CartItemType, CartType } from "../../types";
 import {
   getCartItemTotalPrice,
   getTotalCartPrice,
@@ -6,12 +5,11 @@ import {
 } from "../../helpers/cart";
 
 import { CartInterface } from "../../interfaces";
+import { CartItemType } from "../../types";
+import ReactDropdown from "react-dropdown";
 import { postData } from "../../helpers/api";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import ReactDropdown from "react-dropdown";
-
-const DatePicker = require("react-datepicker");
 
 const LOADING = "Loading";
 const SUCCESS = "Success";
@@ -23,9 +21,12 @@ const genders = [
   { value: "other", label: "Other" },
 ];
 const Form = ({ cart, setCart }: CartInterface) => {
-  const { control, register, handleSubmit, reset } = useForm();
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [formState, setFormState] = useState(INITIAL);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [formSubmitted, setFormSubmitted] = useState(INITIAL);
 
   function convertCartToOrder(cart: any) {
     const data = cart?.data;
@@ -56,11 +57,10 @@ const Form = ({ cart, setCart }: CartInterface) => {
     }
   }
 
-  const handleContactFormSubmit = async (data: any) => {
+  const handleContactFormSubmit = (data: any) => {
     console.log(data);
-
     const order = convertCartToOrder(cart);
-    setFormState(LOADING);
+    setFormSubmitted(LOADING);
 
     // Creating new order upon submission
     postData(order)
@@ -70,126 +70,181 @@ const Form = ({ cart, setCart }: CartInterface) => {
           open: false,
           quantity: 0,
         });
-        setFormState(SUCCESS);
+        setFormSubmitted(SUCCESS);
       })
       .catch((err) => {
-        setFormState(ERROR);
+        setFormSubmitted(ERROR);
         console.error(err);
       });
   };
 
   return (
-    <div className="checkout-form">
-      <form onSubmit={handleSubmit(handleContactFormSubmit)}>
-        <div className="columns is-multiline">
-          <div className="column is-12">
-            <div className="field">
-              <div className="control">
-                <span className="_label">First Name</span>
-                <input
-                  type="text"
-                  {...register("firstName", { required: true })}
-                  disabled={formState === LOADING}
-                  required
-                  placeholder="Type your first name here"
-                />
-              </div>
+    <form onSubmit={handleSubmit(handleContactFormSubmit)}>
+      <div className="columns is-multiline">
+        <div className="column is-12">
+          <div className="field">
+            <div className="control">
+              <span className="_label">First Name</span>
+              {errors?.firstName && (
+                <span className="_label__error">
+                  {errors.firstName.message as any}
+                </span>
+              )}
+              <input
+                type="text"
+                {...register("firstName", {
+                  required: "First name is required!",
+                })}
+                disabled={formSubmitted === LOADING}
+                placeholder="Type your first name here"
+              />
             </div>
-          </div>
-          <div className="column is-12">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Last Name</span>
-                <input
-                  type="text"
-                  {...register("lastName", { required: true })}
-                  disabled={formState === LOADING}
-                  required
-                  placeholder="Type your last name here"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="column is-12">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Email Address</span>
-                <input
-                  type="email"
-                  {...register("email", { required: true })}
-                  disabled={formState === LOADING}
-                  required
-                  placeholder="Type your email address here"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="column is-6">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Date of Birth</span>
-                <input type="date" />
-              </div>
-            </div>
-          </div>
-          <div className="column is-6">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Gender</span>
-                <ReactDropdown options={genders} />
-              </div>
-            </div>
-          </div>
-          <div className="column is-12">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Address</span>
-                <input
-                  type="text"
-                  {...register("address", { required: true })}
-                  disabled={formState === LOADING}
-                  required
-                  placeholder="Type your address here"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="column is-12">
-            <div className="field">
-              <div className="control">
-                <span className="_label">Zip Code</span>
-                <input
-                  type="text"
-                  {...register("zip", { required: true })}
-                  disabled={formState === LOADING}
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div className="column">
-            <input type="checkbox" /> <span>I Agree</span>
           </div>
         </div>
-
-        <input
-          className="submit-btn"
-          type="submit"
-          value={formState === LOADING ? "Loading..." : "Checkout"}
-          disabled={formState === LOADING}
-        />
-        {formState === SUCCESS ? (
-          <div className="form-message form-message_success">
-            The message was sent successfully!
+        <div className="column is-12">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Last Name</span>
+              {errors?.lastName && (
+                <span className="_label__error">
+                  {errors.lastName.message as any}
+                </span>
+              )}
+              <input
+                type="text"
+                placeholder="Type your last name here"
+                {...register("lastName", {
+                  required: "Last name is required!",
+                })}
+              />
+            </div>
           </div>
-        ) : null}
-        {formState === ERROR ? (
-          <div className="form-message form-message_error">
-            There was an error processing the message. Please try again!
+        </div>
+        <div className="column is-12">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Email Address</span>
+              {errors?.email && (
+                <span className="_label__error">
+                  {errors.email.message as any}
+                </span>
+              )}
+              <input
+                type="email"
+                {...register("email", {
+                  required: "Please Enter Your Email!",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Please Enter A Valid Email!",
+                  },
+                })}
+                disabled={formSubmitted === LOADING}
+                placeholder="Type your email address here"
+              />
+            </div>
           </div>
-        ) : null}
-      </form>
-    </div>
+        </div>
+        <div className="column is-6">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Date of Birth</span>
+              <input
+                type="date"
+                {...register("date", { required: "Please enter valid date!" })}
+              />
+              {errors?.date && (
+                <span className="_label__error">
+                  {errors.date.message as any}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="column is-6">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Gender</span>
+              <select
+                className="Select-control"
+                {...register("gender", { required: "Please select a gender!" })}
+              >
+                <option value="">Select gender</option>
+                {genders.map((gender) => {
+                  return (
+                    <option value={gender.value} key={gender.value}>
+                      {gender.label}
+                    </option>
+                  );
+                })}
+              </select>
+              {errors?.gender && (
+                <span className="_label__error">
+                  {errors.gender.message as any}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="column is-12">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Address</span>
+              {errors?.address && (
+                <span className="_label__error">
+                  {errors.address.message as any}
+                </span>
+              )}
+              <input
+                type="text"
+                {...register("address", {
+                  required: "Please enter your address!",
+                })}
+                placeholder="Type your address here"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="column is-12">
+          <div className="field">
+            <div className="control">
+              <span className="_label">Zip Code</span>
+              {errors?.zip && (
+                <span className="_label__error">
+                  {errors.zip.message as any}
+                </span>
+              )}
+              <input
+                type="text"
+                {...register("zip", { required: "Please enter ZIP Code" })}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="column">
+          {errors?.agreement && (
+            <div className="_label__error" style={{ color: "red" }}>
+              {errors.agreement.message as any}
+            </div>
+          )}
+          <label className="checkbox_label">
+            I Agree
+            <input
+              type="checkbox"
+              {...register("agreement", {
+                required: "You need to agree to our terms!",
+              })}
+            />
+            <span className="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <input
+        className="submit-btn"
+        type="submit"
+        value={formSubmitted === LOADING ? "Loading..." : "Checkout"}
+        disabled={formSubmitted === LOADING}
+      />
+    </form>
   );
 };
 
